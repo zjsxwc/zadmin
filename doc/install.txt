@@ -1,0 +1,85 @@
+本项目基于 sonata-project/user-bundle
+
+https://symfony.com/doc/current/bundles/SonataAdminBundle/index.html
+
+```
+COMPOSER_MEMORY_LIMIT=-1 composer require sonata-project/user-bundle  --no-update
+COMPOSER_MEMORY_LIMIT=-1 composer require sonata-project/doctrine-orm-admin-bundle  --no-update
+```
+
+
+## Nginx
+
+```text
+#for sf3.4
+server {
+
+    add_header X-Frame-Options "SAMEORIGIN";
+
+    server_name zadmin.test;
+    root /var/www/symfony4/zadmin/web;
+
+    sendfile off;
+
+    location / {
+        try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /app_dev.php/$1 last;
+    }
+
+    location ~ ^/(app|app_dev|config)\.php(/|$) {
+        # fastcgi_pass php-upstream;
+        fastcgi_pass php71-upstream;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param HTTPS off;
+    }
+
+    client_max_body_size 2m;
+    error_log /var/log/nginx/symfony_error.log;
+    access_log /var/log/nginx/symfony_access.log;
+
+}
+
+```
+
+
+## 创建数据库
+
+```sql
+CREATE DATABASE IF NOT EXISTS zadmin DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+use zadmin;
+
+CREATE TABLE `sessions` (
+    `sess_id` VARCHAR(128) NOT NULL PRIMARY KEY,
+    `sess_data` BLOB NOT NULL,
+    `sess_time` INTEGER UNSIGNED NOT NULL,
+    `sess_lifetime` MEDIUMINT NOT NULL
+) COLLATE utf8_bin, ENGINE = InnoDB;
+```
+
+
+
+```bash
+php bin/console doctrine:schema:update  --force
+```
+
+```bash
+composer dump-autoload
+```
+
+```bash
+# 创建用户
+php bin/console fos:user:create
+# 给用户加角色
+php bin/console fos:user:promote
+# 删除用户某个角色
+php bin/console fos:user:demote
+```
+
+
+
