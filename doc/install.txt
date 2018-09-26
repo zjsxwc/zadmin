@@ -75,6 +75,7 @@ composer dump-autoload
 ```bash
 # 创建用户
 php bin/console fos:user:create
+php bin/console fos:user:create --super-admin
 # 给用户加角色
 php bin/console fos:user:promote
 # 删除用户某个角色
