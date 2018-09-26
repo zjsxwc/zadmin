@@ -27,23 +27,26 @@ security:
         # -> end custom configuration
 
         # default login area for standard users
-
-        # This firewall is used to handle the public login area
-        # This part is handled by the FOS User Bundle
         main:
             pattern:             .*
             context:             user
+            provider: symfony_security_firwall_user_provider
+            anonymous: ~
             form_login:
-                provider:       fos_userbundle
-                login_path:     /login
-                use_forward:    false
-                check_path:     /login_check
-                failure_path:   null
-            logout:             true
-            anonymous:          true
+                login_path: login
+                check_path: login
+                use_referer: true
+                require_previous_session: false
+            logout:
+                path: logout
+                target: login
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_STAFF]
+        ROLE_ADMIN:       [ROLE_SONATA_ADMIN, ROLE_STAFF]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         ROLE_超级管理员: [ROLE_SUPER_ADMIN]
         SONATA:
@@ -51,10 +54,14 @@ security:
 
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
+        AppBundle\Service\SymfonySecurityFirewallUser: bcrypt
 
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
+
+        symfony_security_firwall_user_provider:
+            id: user.symfony_security_firwall_user_provider
 
     acl:
         connection: default
@@ -70,4 +77,5 @@ security:
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
         - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN, ROLE_STAFF] }
+        - { path: ^/user/.*, role: ROLE_USER }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

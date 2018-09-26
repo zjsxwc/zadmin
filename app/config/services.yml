@@ -40,3 +40,8 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    user.symfony_security_firwall_user_provider:
+        class: AppBundle\Service\SymfonySecurityFirewallUserProvider
+        arguments: ["@doctrine"]
+
