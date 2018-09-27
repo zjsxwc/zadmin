@@ -1,5 +1,7 @@
 本项目基于 sonata-project/user-bundle
 
+PHP 7.1, Symfony 3.4
+
 https://symfony.com/doc/current/bundles/SonataAdminBundle/index.html
 
 ```
