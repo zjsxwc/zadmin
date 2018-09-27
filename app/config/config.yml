@@ -81,22 +81,6 @@ sensio_framework_extra:
         annotations: false
 
 
-sonata_block:
-    blocks:
-        # enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts: [admin]
-
-sonata_user:
-    security_acl: true
-    manager_type: orm # can be orm or mongodb
-    class:
-        user: Application\Sonata\UserBundle\Entity\User
-        group: Application\Sonata\UserBundle\Entity\Group
-    admin:
-        user:
-            class: Application\Sonata\UserBundle\Admin\UserAdmin
-            controller: ApplicationSonataUserBundle:UserCRUD
 
 fos_user:
     db_driver:      orm # can be orm or odm
@@ -112,6 +96,28 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list: #default sonata admin block
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+    class:
+        user: Application\Sonata\UserBundle\Entity\User
+        group: Application\Sonata\UserBundle\Entity\Group
+    admin:
+        user:
+            class: Application\Sonata\UserBundle\Admin\UserAdmin
+            controller: ApplicationSonataUserBundle:UserCRUD
+
 
 sonata_admin:
     security:
