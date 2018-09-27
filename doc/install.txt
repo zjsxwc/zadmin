@@ -97,5 +97,7 @@ php bin/console sonata:admin:generate AppBundle/Entity/User --no-interaction
 
 国际化，在`<根目录>/translations`下创建文件`<domain>.<目标语言>.[xliff|yml|xlf|php]`，然后在`Admin`类里设置`protected $translationDomain = <对应的domain>`就可以自动翻译了，注意大小写为不同字符，然后我们可以在controller里面这么用`$this->get("translator")->trans("Social",[],"SonataUserBundle");`，更多参考：https://sonata-project.org/bundles/admin/3-x/doc/reference/translation.html#translation
 
+这个文档里`translation_parames`错写成`translation_parameters`(https://sonata-project.org/bundles/admin/master/doc/reference/advanced_configuration.html#translations)
+
 
 
