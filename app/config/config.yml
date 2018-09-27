@@ -96,6 +96,7 @@ sonata_user:
     admin:
         user:
             class: Application\Sonata\UserBundle\Admin\UserAdmin
+            controller: ApplicationSonataUserBundle:UserCRUD
 
 fos_user:
     db_driver:      orm # can be orm or odm
