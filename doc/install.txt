@@ -83,4 +83,6 @@ php bin/console fos:user:demote
 ```
 
 
+后台必须要有ROLE_ADMIN才能有用，让后在此基础上增加各个特定ROLE，但是ROLE_SUPER_ADMIN拥有所有权限。
+
 
