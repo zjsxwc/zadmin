@@ -2,6 +2,7 @@
 
 namespace Application\FrontBundle\Admin;
 
+use Application\FrontBundle\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -11,14 +12,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class UserAdmin extends AbstractAdmin
 {
     protected $translationDomain = 'ApplicationFrontBundle';
-
-
-    public function preUpdate($user)
-    {
-        /** @var \Application\FrontBundle\Entity\User $user */
-        $rawPassword = $user->getPassword();
-        $user->setPassword(password_hash($rawPassword, PASSWORD_BCRYPT));
-    }
 
     public function prePersist($user)
     {
@@ -31,40 +24,13 @@ class UserAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('username')
-            ->add('usernameCanonical')
-            ->add('email')
-            ->add('emailCanonical')
             ->add('enabled')
-            ->add('salt')
-            ->add('password')
             ->add('lastLogin')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
             ->add('roles')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('dateOfBirth')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('website')
-            ->add('biography')
-            ->add('gender')
-            ->add('locale')
-            ->add('timezone')
-            ->add('phone')
-            ->add('facebookUid')
-            ->add('facebookName')
-            ->add('facebookData')
-            ->add('twitterUid')
-            ->add('twitterName')
-            ->add('twitterData')
-            ->add('gplusUid')
-            ->add('gplusName')
-            ->add('gplusData')
-            ->add('token')
-            ->add('twoStepVerificationCode')
-            ->add('id')
             ->add('mobileNumber')
             ->add('mobileCountry')
         ;
@@ -73,40 +39,13 @@ class UserAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('id')
             ->add('username')
-            ->add('usernameCanonical')
-            ->add('email')
-            ->add('emailCanonical')
-            ->add('enabled')
-            ->add('salt')
-            ->add('password')
+            ->add('enabled', null, ['editable' => true])
             ->add('lastLogin')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
             ->add('roles')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('dateOfBirth')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('website')
-            ->add('biography')
-            ->add('gender')
-            ->add('locale')
-            ->add('timezone')
-            ->add('phone')
-            ->add('facebookUid')
-            ->add('facebookName')
-            ->add('facebookData')
-            ->add('twitterUid')
-            ->add('twitterName')
-            ->add('twitterData')
-            ->add('gplusUid')
-            ->add('gplusName')
-            ->add('gplusData')
-            ->add('token')
-            ->add('twoStepVerificationCode')
-            ->add('id')
             ->add('mobileNumber')
             ->add('mobileCountry')
             ->add('_action', null, [
@@ -123,80 +62,33 @@ class UserAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('username')
-            ->add('usernameCanonical')
             ->add('email')
-            ->add('emailCanonical')
             ->add('enabled')
-            ->add('salt')
-            ->add('password')
             ->add('lastLogin')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
             ->add('roles')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('dateOfBirth')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('website')
-            ->add('biography')
-            ->add('gender')
-            ->add('locale')
-            ->add('timezone')
-            ->add('phone')
-            ->add('facebookUid')
-            ->add('facebookName')
-            ->add('facebookData')
-            ->add('twitterUid')
-            ->add('twitterName')
-            ->add('twitterData')
-            ->add('gplusUid')
-            ->add('gplusName')
-            ->add('gplusData')
-            ->add('token')
-            ->add('twoStepVerificationCode')
             ->add('mobileNumber')
             ->add('mobileCountry')
         ;
+
+        /** @var User $subject */
+        $subject = $this->getSubject();
+        if ($this->isCurrentRoute('create') || (!$subject->getPassword())) {
+            $formMapper->add('password');
+        }
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('id')
             ->add('username')
-            ->add('usernameCanonical')
-            ->add('email')
-            ->add('emailCanonical')
             ->add('enabled')
-            ->add('salt')
-            ->add('password')
             ->add('lastLogin')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
             ->add('roles')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('dateOfBirth')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('website')
-            ->add('biography')
-            ->add('gender')
-            ->add('locale')
-            ->add('timezone')
-            ->add('phone')
-            ->add('facebookUid')
-            ->add('facebookName')
-            ->add('facebookData')
-            ->add('twitterUid')
-            ->add('twitterName')
-            ->add('twitterData')
-            ->add('gplusUid')
-            ->add('gplusName')
-            ->add('gplusData')
-            ->add('token')
-            ->add('twoStepVerificationCode')
-            ->add('id')
             ->add('mobileNumber')
             ->add('mobileCountry')
         ;
