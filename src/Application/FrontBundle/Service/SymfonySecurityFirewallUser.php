@@ -18,14 +18,14 @@ class SymfonySecurityFirewallUser implements UserInterface, EquatableInterface
     private $nickname;
     private $password;
     private $roles;
-    private $accountId;
+    private $id;
 
-    public function __construct($username, $password, array $roles, $accountId, $nickname = null)
+    public function __construct($username, $password, array $roles, $id, $nickname = null)
     {
         $this->username = $username;
         $this->password = $password;
         $this->roles = $roles;
-        $this->accountId = $accountId;
+        $this->id = $id;
         $this->nickname = $nickname;
     }
 
@@ -49,9 +49,9 @@ class SymfonySecurityFirewallUser implements UserInterface, EquatableInterface
         return $this->username;
     }
 
-    public function getAccountId()
+    public function getId()
     {
-        return $this->accountId;
+        return $this->id;
     }
 
     public function getNickname()

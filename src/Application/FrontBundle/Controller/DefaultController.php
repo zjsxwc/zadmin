@@ -3,6 +3,7 @@
 namespace Application\FrontBundle\Controller;
 
 use Application\FrontBundle\Entity\User;
+use Application\FrontBundle\Service\SymfonySecurityFirewallUser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,7 +60,14 @@ class DefaultController extends Controller
      */
     public function userPageAction(Request $request)
     {
-        dump($this->getUser());die;
+        dump($this->getUser());
+        /** @var SymfonySecurityFirewallUser $user */
+        $user = $this->getUser();
+        $userRepo = $this->getDoctrine()->getRepository("ApplicationFrontBundle:User");
+        /** @var User $userObj */
+        $userObj = $userRepo->find($user->getId());
+        dump($userObj);
+        die;
     }
 
 
