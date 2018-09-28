@@ -12,6 +12,22 @@ class UserAdmin extends AbstractAdmin
 {
     protected $translationDomain = 'ApplicationFrontBundle';
 
+
+    public function preUpdate($user)
+    {
+        /** @var \Application\FrontBundle\Entity\User $user */
+        $rawPassword = $user->getPassword();
+        $user->setPassword(password_hash($rawPassword, PASSWORD_BCRYPT));
+    }
+
+    public function prePersist($user)
+    {
+        /** @var \Application\FrontBundle\Entity\User $user */
+        $rawPassword = $user->getPassword();
+        $user->setPassword(password_hash($rawPassword, PASSWORD_BCRYPT));
+    }
+
+
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -139,7 +155,6 @@ class UserAdmin extends AbstractAdmin
             ->add('gplusData')
             ->add('token')
             ->add('twoStepVerificationCode')
-            ->add('id')
             ->add('mobileNumber')
             ->add('mobileCountry')
         ;

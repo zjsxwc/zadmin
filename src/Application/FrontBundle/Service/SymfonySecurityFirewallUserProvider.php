@@ -61,6 +61,11 @@ class SymfonySecurityFirewallUserProvider implements UserProviderInterface
                 sprintf('Username "%s" does not exist.', $username)
             );
         }
+        if (!$maybeUser->isEnabled()){
+            throw new UsernameNotFoundException(
+                sprintf('Username "%s" is disabled.', $username)
+            );
+        }
         return new SymfonySecurityFirewallUser($username, $maybeUser->getPassword(), $maybeUser->getRoles(), $maybeUser->getId(), $maybeUser->getFullname());
     }
 

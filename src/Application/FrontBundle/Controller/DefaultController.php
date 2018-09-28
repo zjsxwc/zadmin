@@ -78,6 +78,7 @@ class DefaultController extends Controller
             ->setPassword($password)
             ->setUsername("CN_".$mobileNumber)
             ->setEmail("CN_".$mobileNumber."@zadmin.test")
+            ->setEnabled(true)
         ;
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
