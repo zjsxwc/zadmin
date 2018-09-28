@@ -2,6 +2,8 @@
 
 PHP 7.1, Symfony 3.4
 
+PHP的docker环境见：`https://github.com/zjsxwc/CN-docker-symfony-using-163-source/blob/master/php7-fpm/Dockerfile-7.1`
+
 https://symfony.com/doc/current/bundles/SonataAdminBundle/index.html
 
 ```
