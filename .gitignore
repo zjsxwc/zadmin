@@ -15,3 +15,5 @@
 !var/SymfonyRequirements.php
 /web/bundles/
 .idea/
+*/.DS_Store
+.DS_Store
