@@ -7,6 +7,7 @@ https://symfony.com/doc/current/bundles/SonataAdminBundle/index.html
 ```
 COMPOSER_MEMORY_LIMIT=-1 composer require sonata-project/user-bundle  --no-update
 COMPOSER_MEMORY_LIMIT=-1 composer require sonata-project/doctrine-orm-admin-bundle  --no-update
+COMPOSER_MEMORY_LIMIT=-1 poser require symfony/intl
 ```
 
 
