@@ -2,6 +2,14 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="SonataUserBundle.en.xliff">
         <body>
+            <trans-unit id="FrontUser">
+                <source>FrontUser</source>
+                <target>会员</target>
+            </trans-unit>
+            <trans-unit id="Front">
+                <source>Front</source>
+                <target>前端</target>
+            </trans-unit>
             <trans-unit id="title_user_registration">
                 <source>title_user_registration</source>
                 <target>title_user_registration</target>

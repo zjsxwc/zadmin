@@ -100,4 +100,11 @@ php bin/console sonata:admin:generate Application/FrontBundle/Entity/User --no-i
 这个文档里`translation_parames`错写成`translation_parameters`(https://sonata-project.org/bundles/admin/master/doc/reference/advanced_configuration.html#translations)
 
 
-
+获取默认可以type hint的service别名
+```bash
+bin/console debug:autowiring
+```
+获取所有service
+```bash
+bin/console debug:container
+```

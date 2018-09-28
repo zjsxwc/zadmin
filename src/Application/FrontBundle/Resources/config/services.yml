@@ -1,0 +1,7 @@
+services:
+    application_front.admin.user:
+        class: Application\FrontBundle\Admin\UserAdmin
+        arguments: [~, Application\FrontBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Front, label: FrontUser }
+        public: true

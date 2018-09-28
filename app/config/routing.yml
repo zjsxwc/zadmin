@@ -15,6 +15,6 @@ sonata_user_admin_resetting:
     resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
     prefix: /admin/resetting
 
-app:
+application_front:
     resource: '@ApplicationFrontBundle/Controller/'
     type: annotation

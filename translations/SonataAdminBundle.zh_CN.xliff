@@ -6,6 +6,14 @@
                 <source>sonata_administration</source>
                 <target>管理员</target>
             </trans-unit>
+            <trans-unit id="FrontUser">
+                <source>FrontUser</source>
+                <target>会员</target>
+            </trans-unit>
+            <trans-unit id="Front">
+                <source>Front</source>
+                <target>前端</target>
+            </trans-unit>
             <trans-unit id="action_delete">
                 <source>action_delete</source>
                 <target>删除</target>
