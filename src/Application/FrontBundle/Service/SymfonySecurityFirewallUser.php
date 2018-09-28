@@ -6,7 +6,7 @@
  * Time: 9:25 PM
  */
 
-namespace AppBundle\Service;
+namespace Application\FrontBundle\Service;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace Application\FrontBundle\Controller;
 
-use AppBundle\Entity\User;
+use Application\FrontBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +36,7 @@ class DefaultController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('@App/login.html.twig', array(
+        return $this->render('@ApplicationFront/login.html.twig', array(
             'last_username' => $lastUsername,
             'error' => $error,
         ));

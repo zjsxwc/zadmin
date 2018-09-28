@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Application\FrontBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Application\FrontBundle\Repository\UserRepository")
  */
 class User extends BaseUser
 {

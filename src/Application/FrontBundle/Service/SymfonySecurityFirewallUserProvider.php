@@ -6,14 +6,15 @@
  * Time: 2:01 PM
  */
 
-namespace AppBundle\Service;
+namespace Application\FrontBundle\Service;
 
-use AppBundle\Entity\User;
-use AppBundle\Repository\UserRepository;
+use Application\FrontBundle\Entity\User;
+use Application\FrontBundle\Repository\UserRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class SymfonySecurityFirewallUserProvider implements UserProviderInterface
 {
@@ -25,7 +26,7 @@ class SymfonySecurityFirewallUserProvider implements UserProviderInterface
      * SymfonySecurityFirewallUserProvider constructor.
      * @param $doctrine
      */
-    public function __construct($doctrine)
+    public function __construct(RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
     }
@@ -38,7 +39,7 @@ class SymfonySecurityFirewallUserProvider implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         /** @var UserRepository $userRepository */
-        $userRepository = $this->doctrine->getRepository('AppBundle:User');
+        $userRepository = $this->doctrine->getRepository('ApplicationFrontBundle:User');
         /** @var User $maybeUser */
         $maybeUser = null;
         if (strpos($username, "_") === false) {

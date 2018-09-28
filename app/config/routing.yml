@@ -16,5 +16,5 @@ sonata_user_admin_resetting:
     prefix: /admin/resetting
 
 app:
-    resource: '@AppBundle/Controller/'
+    resource: '@ApplicationFrontBundle/Controller/'
     type: annotation
